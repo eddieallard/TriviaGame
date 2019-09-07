@@ -1,0 +1,27 @@
+@media screen and (min-width: 980px) {
+    .container {
+        /* width: 750px; */
+        height: auto;
+        position: relative;
+        border: 1px solid #cccccc;
+        overflow: auto;
+    }
+      }
+@media screen and (min-width: 768px) {
+   section {
+        /* width: 650px; */
+        height: auto;
+        position: relative;
+        border: 1px solid #cccccc;
+        overflow: auto;
+    }
+}
+@media screen and (min-width: 640px) {
+    .container {
+        /* width: 400px; */
+        height: auto;
+        position: relative;
+        border: 1px solid #cccccc;
+        overflow: auto;
+    }
+}
