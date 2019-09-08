@@ -1,23 +1,28 @@
 body {
     background-image: url(../images/blue\ gradient\ wallpaper.jpg);
+    background-repeat: no-repeat;
 }
 
 .logo {
     display: block;
+    margin-top: 75px;
     margin-left: auto;
     margin-right: auto;
 }
 
+#singlebutton {
+    font-size: 30px;
+
+}
 h1 {
     color: white;
     text-align: center;
 }
 
-
-
-
-
-
+h2 {
+    color: black;;
+    text-align: left;
+}
 
 
 

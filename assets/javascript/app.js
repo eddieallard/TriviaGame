@@ -1,7 +1,11 @@
+$(document).ready(function() {
+
 // VARIABLES DECLARED
-var timer;
+var timer = 25;
+var countdown;
 var wins = 0;
 var losses = 0;
+var currentQuestion = 0;
 var correctAnswers = 0;
 var incorrectAnswers = 0;
 
@@ -28,12 +32,16 @@ var daQuiz = [
 
 ];
 
-
 // TIMER FUNCTION 
+
+
+var timer = setTimeout(function() {
+    $("#countdown-timer").html("Time Left: " + timer);
+  }, 25000);
 
 
 // GAME LOGIC
 
 
 
-
+});
