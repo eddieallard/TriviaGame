@@ -1,15 +1,15 @@
 $(document).ready(function() {
 
 // VARIABLES DECLARED
-var timer = 25;
-var countdown;
+var timer;
+var timerDown = 25;
 var wins = 0;
 var losses = 0;
-var currentQuestion = 0;
+var ActiveQuestion = 0;
 var correctAnswers = 0;
 var incorrectAnswers = 0;
 
-// QUESTIONS & ANSWERS FOR GAME
+// QUESTIONS & ANSWERS
 
 var daQuiz = [
     
@@ -32,16 +32,103 @@ var daQuiz = [
 
 ];
 
-// TIMER FUNCTION 
-
-
-var timer = setTimeout(function() {
-    $("#countdown-timer").html("Time Left: " + timer);
-  }, 25000);
-
 
 // GAME LOGIC
 
+        // set the object values
+        // question: questions
+        // count: countStartNumber
+        // currentQuestion = 0;
+        // correct = 0;
+        // incorrect = 0;
 
+        // Countdown function
+        function run() {
+            clearInterval(timer);
+            timer = setInterval(countDown, 1000);
+          }
+          run();
 
-});
+        function countDown() {
+             // decrement counter
+             timerDown--;
+            // display counter in on page
+            $("#countdown-timer").html("<h2>" + "Timer: " + timerDown + "</h2>");
+
+            if (timerDown === 0) {
+
+                //  ...run the stop function.
+                stop();
+              }
+            // run timer function
+
+        }
+        countDown();
+        // loadQuestion: function
+        function loadQuestion() {
+            // set timer variable
+            var question = daQuiz[ActiveQuestion].triviaQuestion;
+            // add question dynamically
+            $(".trivia").html("<h2>" + question + "</h2>");
+            console.log(question);
+            // for loop to go through questions
+        }
+        loadQuestion();
+            
+        // nextQuestion: function
+        function nextQuestion() {
+            // set countdown
+            // display counter
+            // increment currentQuestion
+            //run loadQuestion function
+        }
+
+            
+        // timeUp: function
+        function stop() {
+            // clearInterval
+            clearInterval(timer);
+            // display on page
+            // conditional - if your in current question or next question
+        }
+            
+        // results: function
+        function results() {
+            // clear interval
+            // display results
+        }
+
+        //clicked: function ()
+        function clicked () {
+
+        }
+    
+        // answerInCorrectly: function
+        function answerInCorrectly () {
+            // increment incorrect
+            // display the right answer
+            // condition to either go to results or go to next question
+        }
+            
+        // answeredCorrect: function
+        function answerCorrect() {
+            // increment correct
+            // display that they are correct
+        }
+            
+        // reset: function
+        function reset () {
+            
+        }
+
+        // Click events
+            //$(document).on("click") that calls the game function
+            //$(document).on("click") that calls the clicked function
+            //$(document).on("click") that calls the loadQuestion function
+
+    
+
+}
+
+);
+

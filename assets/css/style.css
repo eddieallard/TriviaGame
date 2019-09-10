@@ -20,8 +20,12 @@ h1 {
 }
 
 h2 {
-    color: black;;
-    text-align: left;
+    color: white;
+    text-align: center;
+}
+
+h2.trivia {
+    text-align: center;
 }
 
 
