@@ -5,7 +5,7 @@ var timer;
 var timerDown = 25;
 var wins = 0;
 var losses = 0;
-var ActiveQuestion = 0;
+var activeQuestion = 0;
 var correctAnswers = 0;
 var incorrectAnswers = 0;
 
@@ -53,25 +53,28 @@ var daQuiz = [
              // decrement counter
              timerDown--;
             // display counter in on page
-            $("#countdown-timer").html("<h2>" + "Timer: " + timerDown + "</h2>");
+            $("#countdown-timer").html("<h1>" + "Timer: " + timerDown + "</h1>");
 
             if (timerDown === 0) {
 
                 //  ...run the stop function.
                 stop();
               }
-            // run timer function
-
         }
-        countDown();
+        countDown(); // run timer function
+
         // loadQuestion: function
         function loadQuestion() {
             // set timer variable
-            var question = daQuiz[ActiveQuestion].triviaQuestion;
+            var question = daQuiz[activeQuestion].triviaQuestion;
             // add question dynamically
             $(".trivia").html("<h2>" + question + "</h2>");
-            console.log(question);
             // for loop to go through questions
+            for (var i = 0; i < question.length; i++){
+                console.log(question[i]);
+            }
+            
+            
         }
         loadQuestion();
             
