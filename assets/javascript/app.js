@@ -42,13 +42,14 @@ var daQuiz = [
         // correct = 0;
         // incorrect = 0;
 
-        // Countdown function
+       
         function run() {
             clearInterval(timer);
             timer = setInterval(countDown, 1000);
           }
           run();
 
+         // Countdown function
         function countDown() {
              // decrement counter
              timerDown--;
@@ -71,20 +72,23 @@ var daQuiz = [
             $(".trivia").html("<h2>" + question + "</h2>");
             // for loop to go through questions
             for (var i = 0; i < question.length; i++){
-                console.log(question[i]);
+                console.log();
             }
-            
-            
         }
         loadQuestion();
             
         // nextQuestion: function
         function nextQuestion() {
             // set countdown
+            timerDown--;
             // display counter
+            $("#countdown-timer").html("<h1>" + "Timer: " + timerDown + "</h1>");
             // increment currentQuestion
+            activeQuestion++;
             //run loadQuestion function
         }
+        nextQuestion();
+        
 
             
         // timeUp: function
