@@ -1,13 +1,46 @@
-$(document).ready(function() {
-
 // VARIABLES DECLARED
 var timer;
-var timerDown = 25;
+var timerDown = 10;
 var wins = 0;
 var losses = 0;
 var activeQuestion = 0;
 var correctAnswers = 0;
 var incorrectAnswers = 0;
+
+// RUN'S THE GAME
+function run() {
+    clearInterval(timer);
+    timer = setInterval(countDown, 1000);
+    // HIDE START BUTTON
+    $("#start-button").hide();
+  }
+  
+
+ // COUNTDOWN FUNCTION
+function countDown() {
+     // DECREMENT COUNTER
+     timerDown--;
+    // DISPLAY COUNTER ON THE PAGE
+    $("#countdown-timer").html("<h1>" + "Timer: " + timerDown + "</h1>");
+    if (timerDown === 0) {
+        //  RUN THE STOP FUNCTION
+        stop();
+      }
+}
+// countDown(); // run timer function
+
+// loadQuestion: function
+function loadQuestions() {
+    var quizForm = $(".trivia")
+    // for loop to go through questions
+    for (var i = 0; i < daQuiz.length; i++){
+        console.log();
+        var question = $("<h2>").text(daQuiz[i].triviaQuestion).appendTo(quizForm);   
+        
+    }
+};
+
+
 
 // QUESTIONS & ANSWERS
 
@@ -16,17 +49,20 @@ var daQuiz = [
 {
     triviaQuestion: "In the movie Cast Away, what is the name of the Volleyball?",
     choices: ["That Ball", "Wilson", "Alex", "Tom"],
-    answer: "Wilson"
+    answer: "Wilson",
+    userAnswer: ""
 },
 {
     triviaQuestion: "In the Sopranoes, what's the name of Tony's phychiaratrist?",
     choices: ["Dr.FeelGood", "Dr.Sanjay Gupta", "Dr.Atkins", "Dr.Melfi"],
-    answer: "Dr.Melfi"
+    answer: "Dr.Melfi",
+    userAnswer: ""
 },
 {
     triviaQuestion: "In The Terminator, Sarah Conner was played by who?",
     choices: ["Angella Bassett", "Rosie O'Donnel", "Linda Hamilton", "Cardi B"],
-    answer: "Linda Hamilton"
+    answer: "Linda Hamilton",
+    userAnswer: ""
 },
 
 
@@ -35,59 +71,21 @@ var daQuiz = [
 
 // GAME LOGIC
 
-        // set the object values
-        // question: questions
-        // count: countStartNumber
-        // currentQuestion = 0;
-        // correct = 0;
-        // incorrect = 0;
 
-       
-        function run() {
-            clearInterval(timer);
-            timer = setInterval(countDown, 1000);
-          }
-          run();
-
-         // Countdown function
-        function countDown() {
-             // decrement counter
-             timerDown--;
-            // display counter in on page
-            $("#countdown-timer").html("<h1>" + "Timer: " + timerDown + "</h1>");
-
-            if (timerDown === 0) {
-
-                //  ...run the stop function.
-                stop();
-              }
-        }
-        countDown(); // run timer function
-
-        // loadQuestion: function
-        function loadQuestion() {
-            // set timer variable
-            var question = daQuiz[activeQuestion].triviaQuestion;
-            // add question dynamically
-            $(".trivia").html("<h2>" + question + "</h2>");
-            // for loop to go through questions
-            for (var i = 0; i < question.length; i++){
-                console.log();
-            }
-        }
-        loadQuestion();
+        
+        // loadQuestion();
             
         // nextQuestion: function
-        function nextQuestion() {
-            // set countdown
-            timerDown--;
-            // display counter
-            $("#countdown-timer").html("<h1>" + "Timer: " + timerDown + "</h1>");
-            // increment currentQuestion
-            activeQuestion++;
-            //run loadQuestion function
-        }
-        nextQuestion();
+        // function nextQuestion() {
+        //     // set countdown
+        //     timerDown--;
+        //     // display counter
+        //     $("#countdown-timer").html("<h1>" + "Timer: " + timerDown + "</h1>");
+        //     // increment currentQuestion
+        //     activeQuestion++;
+        //     //run loadQuestion function
+        // }
+        // nextQuestion();
         
 
             
@@ -135,7 +133,6 @@ var daQuiz = [
 
     
 
-}
 
-);
-
+        $("#start-button").on("click", run());
+        loadQuestions();
