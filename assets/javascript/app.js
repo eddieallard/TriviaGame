@@ -19,7 +19,7 @@ var daQuiz = [
         answer: "Wilson",
     },
     {
-        triviaQuestion: "In the Sopranoes, what's the name of Tony's phychiaratrist?",
+        triviaQuestion: "In the Sopranos, what's the name of Tony's phychiaratrist?",
         choices: ["Dr.FeelGood", "Dr.Sanjay Gupta", "Dr.Atkins", "Dr.Melfi"],
         answer: "Dr.Melfi",
     },
@@ -84,16 +84,27 @@ function countDown() {
     stop();
     }
 }
+countDown();
 
 // LOAD QUESTIONS TO BE DISPLAYED
 function loadQuestions() {
-    //set timer variable
-    //add question dynamically
+    // set timer variable
+    // add question dynamically
     // for loop to go through questions
-    for (var i = 0; i < daQuiz.length; i++){
-        console.log();
+    const triviaQuestion =  daQuiz[activeQuestion].triviaQuestion;
+    const choices =  daQuiz[activeQuestion].choices;
+
+    $(".trivia").html("<h2>" + triviaQuestion + "</h2>");
     }
-}
+    loadQuestions();
+
+// LOADS THE CHOICES TO BE DISPLAYED UNDER QUESTIONS
+    // display result
+    // for loop to go display choices
+    var result = "";
+    for (var i = 0; i < choices.length; i++)
+
+
 // LOADS THE NEXT QUESTIONS TO BE DISPLAYED
 function nextQuestion() {
     // set countdown
@@ -131,7 +142,21 @@ function answerInCorrectly () {
     // condition to either go to results or go to next question
 }
 
+// THIS IS THE ANSWERED CORRECTLY FUNCTION
+ function answerCorrect() {
+    // increment correct
+    // display that they are correct
+}
 
+// THIS FUNCTION RESETS THE GAME
+function reset () {
+            
+}
+
+// CLICK EVENTS FOR THE PAGE
+            //$(document).on("click") that calls the game function
+            //$(document).on("click") that calls the clicked function
+            //$(document).on("click") that calls the loadQuestion function
        
 
     
