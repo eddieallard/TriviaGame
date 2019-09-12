@@ -92,18 +92,26 @@ function loadQuestions() {
     // add question dynamically
     // for loop to go through questions
     const triviaQuestion =  daQuiz[activeQuestion].triviaQuestion;
-    const choices =  daQuiz[activeQuestion].choices;
+    const choices = daQuiz[activeQuestion].choices;
 
-    $(".trivia").html("<h2>" + triviaQuestion + "</h2>");
+    $("trivia").html(`
+      <h2>${triviaQuestion}</h2>
+       ${loadChoices(choices)}
+	`);
     }
     loadQuestions();
 
 // LOADS THE CHOICES TO BE DISPLAYED UNDER QUESTIONS
+function loadChoices(){
     // display result
     // for loop to go display choices
     var result = "";
-    for (var i = 0; i < choices.length; i++)
-
+    for (var i = 0; i < choices.length; i++) {
+        result += `<p class="choice" data-answer="${choices[i]}">${choices[i]}</p>`;
+        
+    }
+}
+    return result;
 
 // LOADS THE NEXT QUESTIONS TO BE DISPLAYED
 function nextQuestion() {
