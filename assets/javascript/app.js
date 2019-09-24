@@ -1,18 +1,16 @@
-$(document).ready(function() {
-
 // VARIABLES DECLARED
 var timer;
 var timerDown = 10;
 var wins = 0;
 var losses = 0;
-var activeQuestion = 0;
+var activeQuestion = 1;
 var correctAnswers = 0;
 var incorrectAnswers = 0;
 
 // QUESTIONS & ANSWERS
 
 var daQuiz = [
-    
+
     {
         triviaQuestion: "In the movie Cast Away, what is the name of the Volleyball?",
         choices: ["That Ball", "Wilson", "Alex", "Tom"],
@@ -63,78 +61,79 @@ var daQuiz = [
         choices: ["Jennifer Lawrence", "Rosie O'Donnel", "Linda Hamilton", "Cardi B"],
         answer: "Jennifer Lawrence",
     },
-    ];
-    
+];
+
 // RUNS THE GAME
 function run() {
+
     // set's the 1 second countdown
     // hide the start button
+    $("#start-button").hide();
     clearInterval(timer);
     timer = setInterval(countDown, 1000);
-    $("#start-button").hide();
 }
 
- // COUNTDOWN FUNCTION
+// COUNTDOWN FUNCTION
 function countDown() {
     // display the counter on the page
     // run the stop function
-     timerDown--;
+    timerDown--;
+    $("#countdown-timer").empty();
     $("#countdown-timer").html("<h1>" + "Timer: " + timerDown + "</h1>");
     if (timerDown === 0) {
-    stop();
+        stop();
+
+    
     }
 }
-countDown();
 
 // LOAD QUESTIONS TO BE DISPLAYED
 function loadQuestions() {
     // set timer variable
     // add question dynamically
-    // for loop to go through questions
-    const triviaQuestion =  daQuiz[activeQuestion].triviaQuestion;
+    // loop to go through questions
+    const triviaQuestion = daQuiz[activeQuestion].triviaQuestion;
     const choices = daQuiz[activeQuestion].choices;
+    var $question = $("<div>")
+        .html("<h2>" + triviaQuestion + "</h2>")
+        .appendTo($(".trivia"));
 
-    $("trivia").html(`
-      <h2>${triviaQuestion}</h2>
-       ${loadChoices(choices)}
-	`);
-    }
-    loadQuestions();
-
-// LOADS THE CHOICES TO BE DISPLAYED UNDER QUESTIONS
-function loadChoices(){
-    // display result
-    // for loop to go display choices
-    var result = "";
+    var $choices = ("<form>")
     for (var i = 0; i < choices.length; i++) {
-        result += `<p class="choice" data-answer="${choices[i]}">${choices[i]}</p>`;
-        
+        // create an input tag for radio buttons
+        var $radiobutton = $("<input>");
+        //css style that shows the radio buttons
+        $radiobutton.attr({
+            type: "button",
+            value: choices[i],
+            class: "form-check-input"
+        })
+        .appendTo($choices);
     }
-}
-    return result;
+};
 
 // LOADS THE NEXT QUESTIONS TO BE DISPLAYED
 function nextQuestion() {
-    // set countdown
+    clearInterval(timer);
     // display counter
     // increment currentQuestion
-    //run loadQuestion function
     timerDown--;
     $("#countdown-timer").html("<h1>" + "Timer: " + timerDown + "</h1>");
     activeQuestion++;
-}       
-            
+}
+
 // THIS IS THE TIME'S UP FUNCTION
 function stop() {
-    // clearInterval
+    clearInterval(timer);
     // display on page
     // conditional - if your in current question or next question
-    clearInterval(timer); 
+    // ++wroong answer   
+    
 }
 
 // THIS IS THE RESULTS FUNCTION
-function results () {
-    // clear interval
+function results() {
+    clearInterval(timer);
     // display results
 }
 
@@ -144,30 +143,30 @@ function clicked() {
 }
 
 // THIS IS THE ANSWERED INCORRECTLY FUNCTION
-function answerInCorrectly () {
-    // increment incorrect
+function answerInCorrectly() {
+    incorrectAnswers++;
     // display the right answer
     // condition to either go to results or go to next question
 }
 
 // THIS IS THE ANSWERED CORRECTLY FUNCTION
- function answerCorrect() {
-    // increment correct
+function answerCorrect() {
+    correctAnswers++;
     // display that they are correct
 }
 
 // THIS FUNCTION RESETS THE GAME
-function reset () {
-            
+function reset() {
+
 }
 
 // CLICK EVENTS FOR THE PAGE
-            //$(document).on("click") that calls the game function
-            //$(document).on("click") that calls the clicked function
-            //$(document).on("click") that calls the loadQuestion function
-       
-
-    
+//$(document).on("click") that calls the game function
+//$(document).on("click") that calls the clicked function
 
 
-        });
+
+$("#start-button").on("click", function () {
+    run();
+    loadQuestions();
+});
